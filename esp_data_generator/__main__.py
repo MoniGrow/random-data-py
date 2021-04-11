@@ -10,7 +10,9 @@ if __name__ == "__main__":
     min_wait_sec = 5
     max_wait_sec = 15
 
-    while True:
+    max_iterations = 15
+
+    for i in range(max_iterations):
         waiting = random.random() * (max_wait_sec - min_wait_sec) + min_wait_sec
         time.sleep(waiting)
         data_gen.push_random_data(target_uid, datetime.datetime.now())
