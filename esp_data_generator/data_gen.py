@@ -23,7 +23,7 @@ def get_user_collection(uid):
 
 
 def get_latest_timestamp(uid):
-    latest = list(get_user_collection(uid).limit(1).stream())
+    latest = list(get_user_collection(uid).order_by("timeStamp", direction=firestore.Query.DESCENDING).limit(1).stream())
     if len(latest) == 0:
         return None
     latest = latest[0]
