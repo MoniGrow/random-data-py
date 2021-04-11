@@ -38,7 +38,7 @@ def push_random_data(uid, timestamp):
     data = {
         "humidity": humidity,
         "temperature": temperature,
-        "timeStamp": timestamp
+        "timestamp": timestamp
     }
     get_user_collection(uid).document(str(timestamp)).set(data)
     print(f"Push data {data}")
