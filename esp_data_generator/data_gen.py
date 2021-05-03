@@ -35,9 +35,11 @@ def push_random_data(uid, timestamp):
         raise TypeError("timestamp is not a datetime")
     humidity = random.randint(100, 1000)
     temperature = random.randint(60, 90)
+    waterlevel = random.random() * 10
     data = {
         "humidity": humidity,
         "temperature": temperature,
+        "waterlevel": waterlevel,
         "timestamp": timestamp
     }
     get_user_collection(uid).document(str(timestamp)).set(data)
