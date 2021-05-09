@@ -8,7 +8,7 @@ from firebase_admin import db
 
 
 def push_random_data(uid):
-    ref = db.reference(f"sensor_data/users")
+    ref = db.reference(f"users/{uid}/sensor_data")
     user_ref = ref.child(uid)
     humidity = random.randint(100, 1000)
     temperature = random.randint(60, 90)
@@ -22,5 +22,7 @@ def push_random_data(uid):
         # "timestamp_server": {".sv": "timestamp"},
         # "timestamp_local": timestamp.timestamp()
     }
-    user_ref.push(data)
-    print(f"Push data {data}")
+    for label in ["humidity", "temperature", "water_level"]:
+        label_data = {label: data[label], "timestamp": timestamp.timestamp()}
+        ref.child(label).push(label_data)
+        print(f"Push data {label_data}")

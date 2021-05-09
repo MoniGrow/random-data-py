@@ -25,7 +25,7 @@ def push_random_data(uid):
     data = {
         "humidity": humidity,
         "temperature": temperature,
-        "waterlevel": waterlevel,
+        "water_level": waterlevel,
         "timestamp": timestamp
     }
     get_user_collection(db, uid).document(str(timestamp)).set(data)
