@@ -1,19 +1,21 @@
-import datetime
+from datetime import datetime, timedelta
 import os
 import random
 
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+import numpy as np
 
 
 def push_random_data(uid):
     ref = db.reference(f"users/{uid}/sensor_data")
     user_ref = ref.child(uid)
-    humidity = random.randint(100, 1000)
-    temperature = random.randint(60, 90)
-    waterlevel = random.random() * 10
-    timestamp = datetime.datetime.now()
+    humidity = random.randint(20, 100)
+    humidity = np.random.normal(loc=75, scale=4)
+    temperature = np.random.normal(loc=70, scale=8)
+    waterlevel = np.random.normal(loc=7, scale=0.7)
+    timestamp = datetime.now()
     data = {
         "humidity": humidity,
         "temperature": temperature,
